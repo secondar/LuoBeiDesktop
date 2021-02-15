@@ -52,8 +52,8 @@
                         </StackPanel>
                         <WrapPanel.ContextMenu>
                             <ContextMenu>
-                                <MenuItem Header="设为桌面" Name="MenuUse" Click="MenuUse_Click"></MenuItem>
-                                <MenuItem Header="删除主题" Name="MenuDelete" Click="MenuDelete_Click"></MenuItem>
+                                <MenuItem Header="{Binding Path=SetAsDesktopText}" Name="MenuUse" Click="MenuUse_Click"></MenuItem>
+                                <MenuItem Header="{Binding Path=TeleteThemeText}" Name="MenuDelete" Click="MenuDelete_Click"></MenuItem>
                             </ContextMenu>
                         </WrapPanel.ContextMenu>
                     </WrapPanel>

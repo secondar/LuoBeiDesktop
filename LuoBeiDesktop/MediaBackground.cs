@@ -19,6 +19,9 @@ namespace LuoBeiDesktop
         public MediaBackground()
         {
             InitializeComponent();
+        }
+        public void Init()
+        {
             this.Left = 0;
             this.Top = 0;
             this.Width = (int)System.Windows.SystemParameters.PrimaryScreenWidth;
@@ -26,7 +29,6 @@ namespace LuoBeiDesktop
             vlcControl.Height = this.Height;
             vlcControl.Width = this.Width;
         }
-
         private void vlcControl_VlcLibDirectoryNeeded(object sender, Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs e)
         {
             var currentAssembly = Assembly.GetEntryAssembly();

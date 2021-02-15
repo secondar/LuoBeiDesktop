@@ -32,13 +32,24 @@ namespace LuoBeiDesktop
         {
             InitializeComponent();
             List<extend.ConfigRun> list = new List<extend.ConfigRun>();
-            list.Add(new extend.ConfigRun(1, "Yes"));
-            list.Add(new extend.ConfigRun(2, "No"));
+            list.Add(new extend.ConfigRun(1, extend.Language.ON));
+            list.Add(new extend.ConfigRun(2, extend.Language.OFF));
             cb_Run.ItemsSource = list;
             if (extend.SystemConfig.Run == 1) cb_Run.SelectedIndex = 0;
             else cb_Run.SelectedIndex = 1;
 
+            List<extend.ConfigRun> list_Update = new List<extend.ConfigRun>();
+            list_Update.Add(new extend.ConfigRun(1, extend.Language.ON));
+            list_Update.Add(new extend.ConfigRun(2, extend.Language.OFF));
+            cb_Update.ItemsSource = list_Update;
+            if (extend.SystemConfig.Update == 1) cb_Update.SelectedIndex = 0;
+            else cb_Update.SelectedIndex = 1;
             sl_volume.Value = extend.SystemConfig.Volume;
+            tbk_Update.Text = extend.Language.CheckUpdates;
+            tbk_Autoboot.Text = extend.Language.Autoboot;
+            tbk_Language.Text = extend.Language.Languages;
+            tbk_Volume.Text = extend.Language.Volume;
+            btn_tbk_Save.Text = extend.Language.Save;
 
             try
             {
@@ -67,7 +78,7 @@ namespace LuoBeiDesktop
             catch(Exception e)
             {
                 MessageBoxWindow messageBoxWindow = new MessageBoxWindow();
-                messageBoxWindow.setInfo("Error", "Initialization failed, error message:"+e.Message, "", "OK", 130, 350, false);
+                messageBoxWindow.setInfo(extend.Language.Error,extend.Language.InitFail, "", extend.Language.Ok, 130, 350, false);
                 messageBoxWindow.getTextHandler += (int types) =>
                 {
 
@@ -82,6 +93,7 @@ namespace LuoBeiDesktop
             try
             {
                 extend.ConfigRun Run = cb_Run.SelectedItem as extend.ConfigRun;
+                extend.ConfigRun Update = cb_Update.SelectedItem as extend.ConfigRun;
                 extend.ConfigLanguage language = cb_Language.SelectedItem as extend.ConfigLanguage;
                 int volume = Convert.ToInt32(Convert.ToDouble(sl_volume.Value));
 
@@ -89,12 +101,12 @@ namespace LuoBeiDesktop
                 con.Open();
                 SQLiteCommand com = new SQLiteCommand();
                 com.Connection = con;
-                string Tsql = "UPDATE \"system\" SET volume = " + volume.ToString() + " ,language='" + language.Field + "',run=" + Run.Type.ToString() + " WHERE id=1";
+                string Tsql = "UPDATE \"system\" SET volume = " + volume.ToString() + " ,language='" + language.Field + "',run=" + Run.Type.ToString() + ",`update`="+ Update.Type+ " WHERE id=1";
                 com.CommandText = Tsql;
                 Convert.ToInt32(com.ExecuteScalar());
                 con.Close();
                 MessageBoxWindow messageBoxWindow = new MessageBoxWindow();
-                messageBoxWindow.setInfo("Success", "Success update language Restart to take effect", "", "OK", 130, 350, false);
+                messageBoxWindow.setInfo(extend.Language.Success, extend.Language.RestartTotakeEffect, "", extend.Language.Ok, 130, 350, false);
                 messageBoxWindow.getTextHandler += (int types) =>
                 {
 
@@ -104,7 +116,7 @@ namespace LuoBeiDesktop
             catch (Exception ex)
             {
                 MessageBoxWindow messageBoxWindow = new MessageBoxWindow();
-                messageBoxWindow.setInfo("Error", "Save failed, error message:" + ex.Message, "", "OK", 130, 350, false);
+                messageBoxWindow.setInfo(extend.Language.Error, extend.Language.SaveFailed + ex.Message, "", extend.Language.Ok, 130, 350, false);
                 messageBoxWindow.getTextHandler += (int types) =>
                 {
 

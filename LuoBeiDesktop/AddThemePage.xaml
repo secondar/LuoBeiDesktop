@@ -21,7 +21,7 @@
             <Grid>
                 <UniformGrid Columns="4">
                     <Grid Margin="20,0,0,25" VerticalAlignment="Center">
-                        <TextBlock Text="Name:" FontSize="20"/>
+                        <TextBlock x:Name="tbk_Name" Text="Name:" FontSize="20"/>
                     </Grid>
                     <Grid HorizontalAlignment="Left" Margin="-104,0,0,25" VerticalAlignment="Center" Width="299">
                         <TextBox Text="" x:Name="tb_Name"/>
@@ -30,35 +30,35 @@
 
                     </Grid>
                     <Grid VerticalAlignment="Center" Margin="-80,15,0,25">
-                        <TextBlock Text="Theme Name（*must）" FontSize="20"/>
+                        <TextBlock x:Name="tbk_Name_Tip" Text="Theme Name（*must）" FontSize="20"/>
                     </Grid>
                 </UniformGrid>
             </Grid>
             <Grid Grid.Row="1">
                 <UniformGrid Columns="4">
                     <Grid Margin="20,0,0,25" VerticalAlignment="Center">
-                        <TextBlock Text="Image:" FontSize="20" Margin="0,0,-13,0"/>
+                        <TextBlock x:Name="tbk_Thumbnail" Text="Image:" FontSize="20" Margin="0,0,-13,0"/>
                     </Grid>
                     <Grid HorizontalAlignment="Left" Margin="-104,0,0,25" VerticalAlignment="Center" Width="299">
                         <TextBox Text="" x:Name="tb_thumbnail"/>
                     </Grid>
                     <Grid Margin="0,0,85,0" VerticalAlignment="Center">
-                        <Button x:Name="btn_thumbnail" Click="btn_thumbnail_Click" Margin="0 0 0 0" Padding="-8 -5 0 0" HorizontalContentAlignment="Center" Width="100" Background="#FFFF8A52" BorderBrush="#FFFF8A52" VerticalAlignment="Center">
+                        <Button x:Name="btn_Thumbnail" Click="btn_thumbnail_Click" Margin="0 0 0 0" Padding="-8 -5 0 0" HorizontalContentAlignment="Center" Width="100" Background="#FFFF8A52" BorderBrush="#FFFF8A52" VerticalAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <!--文字-->
-                                <TextBlock Text="election" Margin="10 3 0 0"/>
+                                <TextBlock x:Name="btn_tbk_Thumbnail_Election" Text="election" Margin="10 3 0 0"/>
                             </StackPanel>
                         </Button>
                     </Grid>
                     <Grid VerticalAlignment="Center" Margin="-80,15,0,25">
-                        <TextBlock Text="thumbnail" FontSize="20"/>
+                        <TextBlock x:Name="tbk_Thumbnail_Tip" Text="thumbnail" FontSize="20"/>
                     </Grid>
                 </UniformGrid>
             </Grid>
             <Grid Grid.Row="2">
                 <UniformGrid Columns="4">
                     <Grid Margin="20,0,0,25" VerticalAlignment="Center">
-                        <TextBlock Text="Type:" FontSize="20"/>
+                        <TextBlock x:Name="tbk_Type" Text="Type:" FontSize="20"/>
                     </Grid>
                     <Grid HorizontalAlignment="Left" Margin="-104,0,0,25" VerticalAlignment="Center" Width="299">
                         <ComboBox x:Name="cb_Type" DisplayMemberPath="Name" SelectedValuePath="Type" SelectionChanged="cb_Type_SelectionChanged">
@@ -68,14 +68,14 @@
 
                     </Grid>
                     <Grid VerticalAlignment="Center" Margin="-80,15,0,25">
-                        <TextBlock Text="Select topic type（*must）" FontSize="20"/>
+                        <TextBlock x:Name="tbk_Type_Tip" Text="Select topic type（*must）" FontSize="20"/>
                     </Grid>
                 </UniformGrid>
             </Grid>
             <Grid Grid.Row="3">
                 <UniformGrid Columns="4">
                     <Grid Margin="20,0,0,25" VerticalAlignment="Center">
-                        <TextBlock Text="Path:" FontSize="20"/>
+                        <TextBlock x:Name="tbk_Path" Text="Path:" FontSize="20"/>
                     </Grid>
                     <Grid HorizontalAlignment="Left" Margin="-104,0,0,25" VerticalAlignment="Center" Width="299">
                         <TextBox Text="" x:Name="tb_Path"/>
@@ -84,19 +84,19 @@
                         <Button Click="btn_Path_Click" x:Name="btn_Path" Margin="0 0 0 0" Padding="-8 -5 0 0" HorizontalContentAlignment="Center" Width="100" Background="#FFFF8A52" BorderBrush="#FFFF8A52" VerticalAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <!--文字-->
-                                <TextBlock Text="election" Margin="10 3 0 0"/>
+                                <TextBlock x:Name="btn_tbk_Path_Election" Text="election" Margin="10 3 0 0"/>
                             </StackPanel>
                         </Button>
                     </Grid>
                     <Grid VerticalAlignment="Center" Margin="-80,15,0,25">
-                        <TextBlock Text="Topic file path or url（*must）" FontSize="20"/>
+                        <TextBlock x:Name="tbk_Path_Tip" Text="Topic file path or url（*must）" FontSize="20"/>
                     </Grid>
                 </UniformGrid>
             </Grid>
             <Grid Grid.Row="4">
                 <UniformGrid Columns="4">
                     <Grid Margin="20,0,0,25" VerticalAlignment="Center">
-                        <TextBlock Text="Author:" FontSize="20"/>
+                        <TextBlock x:Name="tbk_Author" Text="Author:" FontSize="20"/>
                     </Grid>
                     <Grid HorizontalAlignment="Left" Margin="-104,0,0,25" VerticalAlignment="Center" Width="299">
                         <TextBox Text="" x:Name="tb_Atuhor"/>
@@ -105,14 +105,14 @@
                         
                     </Grid>
                     <Grid VerticalAlignment="Center" Margin="-80,15,0,25">
-                        <TextBlock Text="Author" FontSize="20"/>
+                        <TextBlock x:Name="tbk_Author_Tip" Text="Author" FontSize="20"/>
                     </Grid>
                 </UniformGrid>
             </Grid>
             <Grid Grid.Row="5">
                 <UniformGrid Columns="4">
                     <Grid Margin="20,0,0,25" VerticalAlignment="Center">
-                        <TextBlock Text="Notes:" FontSize="20"/>
+                        <TextBlock x:Name="tbk_Notes" Text="Notes:" FontSize="20"/>
                     </Grid>
                     <Grid HorizontalAlignment="Left" Margin="-104,0,0,25" VerticalAlignment="Center" Width="299">
                         <TextBox Text="" x:Name="tb_Remarks"/>
@@ -121,7 +121,7 @@
 
                     </Grid>
                     <Grid VerticalAlignment="Center" Margin="-80,15,0,25">
-                        <TextBlock Text="Remarks" FontSize="20"/>
+                        <TextBlock x:Name="tbk_Notes_Tip" Text="Remarks" FontSize="20"/>
                     </Grid>
                 </UniformGrid>
             </Grid>
@@ -129,7 +129,7 @@
                 <Button x:Name="btn_Save" Click="btn_Save_Click" Margin="25 0 25 0" Padding="-8 -5 0 0" HorizontalContentAlignment="Center" Background="#FFFF8A52" BorderBrush="#FFFF8A52" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal">
                         <!--文字-->
-                        <TextBlock Text="Save" Margin="10 3 0 0" FontSize="20"/>
+                        <TextBlock x:Name="btn_tbk_Save" Text="Save" Margin="10 3 0 0" FontSize="20"/>
                     </StackPanel>
                 </Button>
             </Grid>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,6 +75,34 @@ namespace LuoBeiDesktop.extend
             {
                 return false;
             }
+        }
+        /// <summary>
+        /// POST请求与获取结果 
+        /// </summary>
+        /// <param name="Url">URL</param>
+        /// <param name="Method">请求方式,GET,POST</param>
+        /// <param name="DataStr">提交内容,格式UserName=admin&Password=123</param>
+        /// <param name="ContentType">application/x-www-form-urlencoded,multipart/form-data,application/json,text/xml</param>
+        /// <returns></returns>
+        /// 
+        public string Request(string Url, string Method = "POST", string DataStr = "", string ContentType = "application/x-www-form-urlencoded")
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
+            request.Method = Method;
+            request.ContentType = ContentType;
+            request.ContentLength = DataStr.Length;
+            StreamWriter writer = new StreamWriter(request.GetRequestStream(), Encoding.ASCII);
+            writer.Write(DataStr);
+            writer.Flush();
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            string encoding = response.ContentEncoding;
+            if (encoding == null || encoding.Length < 1)
+            {
+                encoding = "UTF-8"; //默认编码 
+            }
+            StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(encoding));
+            string retString = reader.ReadToEnd();
+            return retString;
         }
 
     }

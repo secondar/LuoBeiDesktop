@@ -19,9 +19,23 @@ namespace LuoBeiDesktop
         void OnStartup(object sender, StartupEventArgs e)
 
         {
-            if (e.Args.Length >= 1) extend.Minimized.Minimizeds = true;
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
+            string MName = System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName;
+            string PName = System.IO.Path.GetFileNameWithoutExtension(MName);
+            System.Diagnostics.Process[] myProcess = System.Diagnostics.Process.GetProcessesByName(PName);
+
+            if (myProcess.Length > 1)
+            {
+                MessageBox.Show("This program can only run one instance at a time!", "Error");
+                Application.Current.Shutdown();
+                return;
+            }
+            else
+            {
+                if (e.Args.Length >= 1) extend.Minimized.Minimizeds = true;
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+            }
+
         }
     }
 }

@@ -22,6 +22,7 @@ namespace LuoBeiDesktop
     public partial class ThemeListPage : Page
     {
         private MainWindow _parentWin;
+        public string aaa = "ceeee";
         public MainWindow ParentWindow
         {
             get { return _parentWin; }
@@ -62,7 +63,7 @@ namespace LuoBeiDesktop
             catch (Exception ex)
             {
                 MessageBoxWindow messageBoxWindow = new MessageBoxWindow();
-                messageBoxWindow.setInfo("Error", ex.Message, "", "OK", 130, 350, false);
+                messageBoxWindow.setInfo(extend.Language.Error, extend.Language.ThereIsAnError, "", extend.Language.Ok, 130, 350, false);
                 messageBoxWindow.getTextHandler += (int type) =>
                 {
 
@@ -89,7 +90,7 @@ namespace LuoBeiDesktop
             }
             catch (Exception ex) {
                 MessageBoxWindow messageBoxWindow = new MessageBoxWindow();
-                messageBoxWindow.setInfo("Error", ex.Message, "", "OK", 130, 350, false);
+                messageBoxWindow.setInfo(extend.Language.Error, extend.Language.ThereIsAnError, "", extend.Language.Ok, 130, 350, false);
                 messageBoxWindow.getTextHandler += (int type) =>
                 {
 
@@ -125,7 +126,7 @@ namespace LuoBeiDesktop
                     if ((int)Convert.ToInt64(sr["networks"]) == 1) networks = true;
                     if ((int)Convert.ToInt64(sr["use"]) == 1) use = true;
 
-                    list.Add(new extend.ThemeList(id, name, thumbnail, path, type, networks, use, author, remarks, addtime));
+                    list.Add(new extend.ThemeList(id, name, thumbnail, path, type, networks, use, author, remarks, addtime,extend.Language.SetAsDesktop,extend.Language.DeleteTheme));
 
                 }
                 sr.Close();
@@ -134,7 +135,7 @@ namespace LuoBeiDesktop
             }catch(Exception e)
             {
                 MessageBoxWindow messageBoxWindow = new MessageBoxWindow();
-                messageBoxWindow.setInfo("Error", e.Message, "", "OK", 130, 350, false);
+                messageBoxWindow.setInfo(extend.Language.Error, extend.Language.ThereIsAnError, "", extend.Language.Ok, 130, 350, false);
                 messageBoxWindow.getTextHandler += (int type) =>
                 {
 

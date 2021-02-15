@@ -29,12 +29,31 @@ namespace LuoBeiDesktop
             InitializeComponent();
             btn_Path.Visibility = Visibility.Hidden;
             List<extend.ThemeType> list = new List<extend.ThemeType>();
-            list.Add(new extend.ThemeType(1, "Local video"));
-            list.Add(new extend.ThemeType(2, "Network video"));
-            list.Add(new extend.ThemeType(3, "Local image"));
-            list.Add(new extend.ThemeType(4, "Internet pictures"));
-            list.Add(new extend.ThemeType(5, "Webpage"));
+            list.Add(new extend.ThemeType(1, extend.Language.LocalVideo));
+            list.Add(new extend.ThemeType(2, extend.Language.NetworkVideo));
+            list.Add(new extend.ThemeType(3, extend.Language.LocalImage));
+            list.Add(new extend.ThemeType(4, extend.Language.InternetPictures));
+            list.Add(new extend.ThemeType(5, extend.Language.Webpage));
             cb_Type.ItemsSource = list;
+
+
+
+            tbk_Name.Text = extend.Language.AddName;
+            tbk_Name_Tip.Text = extend.Language.AddName_Tip;
+            tbk_Thumbnail.Text = extend.Language.Thumbnail;
+            tbk_Thumbnail_Tip.Text = extend.Language.AddThumbnail_Tip;
+            btn_tbk_Thumbnail_Election.Text = extend.Language.Election;
+            tbk_Type.Text = extend.Language.Type;
+            tbk_Type_Tip.Text = extend.Language.AddType_Tip;
+            tbk_Path.Text = extend.Language.Path;
+            btn_tbk_Path_Election.Text = extend.Language.Election;
+            tbk_Path_Tip.Text = extend.Language.AddPath_Tip;
+            tbk_Author.Text = extend.Language.Author;
+            tbk_Author_Tip.Text = extend.Language.AddAuthor_Tip;
+            tbk_Notes.Text = extend.Language.AddNotes;
+            tbk_Notes_Tip.Text = extend.Language.Notes_Tip;
+            btn_tbk_Save.Text = extend.Language.Save;
+
         }
 
         private void btn_Save_Click(object sender, RoutedEventArgs e)

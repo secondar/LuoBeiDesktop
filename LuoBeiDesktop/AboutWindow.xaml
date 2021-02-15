@@ -19,7 +19,7 @@
             <Grid>
                 <UniformGrid Columns="2">
                     <Grid HorizontalAlignment="Right" Margin="0,0,305,0" Width="49" VerticalAlignment="Center">
-                        <TextBlock Text="Author:" HorizontalAlignment="Right"/>
+                        <TextBlock x:Name="tbk_Author" Text="Author:" HorizontalAlignment="Right"/>
                     </Grid>
                     <Grid Margin="-300,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <TextBlock Text="一颗大萝北"/>
@@ -29,7 +29,7 @@
             <Grid Grid.Row="1">
                 <UniformGrid Columns="2">
                     <Grid HorizontalAlignment="Right" Margin="0,0,305,0" Width="49" VerticalAlignment="Center">
-                        <TextBlock Text="Blog:" HorizontalAlignment="Right"/>
+                        <TextBlock x:Name="tbk_Blog" Text="Blog:" HorizontalAlignment="Right"/>
                     </Grid>
                     <Grid Margin="-300,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <TextBlock Text="www.bugquit.com"/>
@@ -39,7 +39,7 @@
             <Grid Grid.Row="2">
                 <UniformGrid Columns="2">
                     <Grid HorizontalAlignment="Right" Margin="0,0,305,0" Width="49" VerticalAlignment="Center">
-                        <TextBlock Text="Website:" HorizontalAlignment="Right"/>
+                        <TextBlock x:Name="tbk_Website" Text="Website:" HorizontalAlignment="Right"/>
                     </Grid>
                     <Grid Margin="-300,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <TextBlock Text="Desktop.bugquit.com"/>
@@ -49,29 +49,29 @@
             <Grid Grid.Row="3">
                 <UniformGrid Columns="2">
                     <Grid HorizontalAlignment="Right" Margin="0,0,305,0" Width="49" VerticalAlignment="Center">
-                        <TextBlock Text="Version:" HorizontalAlignment="Right"/>
+                        <TextBlock x:Name="tbk_Version" Text="Version:" HorizontalAlignment="Right"/>
                     </Grid>
                     <Grid Margin="-300,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                        <TextBlock Text="LuoBeiDesktop v1.0.0"/>
+                        <TextBlock x:Name="tbk_Versions" Text=""/>
                     </Grid>
                 </UniformGrid>
             </Grid>
-            
+
             <Grid Grid.Row="4">
                 <UniformGrid Columns="2">
-                    <Grid HorizontalAlignment="Right" Margin="0,0,305,0" Width="49" VerticalAlignment="Center">
-                        <TextBlock Text="SdkList:" HorizontalAlignment="Right"/>
+                    <Grid HorizontalAlignment="Right" Margin="0,22,305,22" Width="81" VerticalAlignment="Center">
+                        <TextBlock x:Name="tbk_SdkList" Text="SdkList:" HorizontalAlignment="Right"/>
                     </Grid>
                     <Grid Margin="-300,0,10,0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                        <TextBlock TextWrapping="Wrap" Text="EntityFramework.6.3.0,MaterialDesignColors.1.2.7,MaterialDesignThemes.3.2.0,Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3,System.Data.SQLite.1.0.113.7,System.Data.SQLite.Core.1.0.113.7,System.Data.SQLite.EF6.1.0.113.0,System.Data.SQLite.Linq.1.0.113.0,VideoLAN.LibVLC.Windows.3.0.12,Vlc.DotNet.Core.3.1.0,Vlc.DotNet.Core.Interops.3.1.0,Vlc.DotNet.Forms.3.1.0"/>
+                        <TextBlock TextWrapping="Wrap" Text="EntityFramework.6.3.0,MaterialDesignColors.1.2.7,MaterialDesignThemes.3.2.0,Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3,System.Data.SQLite.1.0.113.7,System.Data.SQLite.Core.1.0.113.7,System.Data.SQLite.EF6.1.0.113.0,System.Data.SQLite.Linq.1.0.113.0,VideoLAN.LibVLC.Windows.3.0.12,Vlc.DotNet.Core.3.1.0,Vlc.DotNet.Core.Interops.3.1.0,Vlc.DotNet.Forms.3.1.0,Newtonsoft.Json12.0.3"/>
                     </Grid>
                 </UniformGrid>
             </Grid>
-            
+
             <Grid Grid.Row="5">
                 <UniformGrid Columns="2">
                     <Grid HorizontalAlignment="Right" Margin="0,0,305,0" Width="49" VerticalAlignment="Center">
-                        <TextBlock Text="Donation:" Margin="-10 0 0 0" HorizontalAlignment="Right"/>
+                        <TextBlock x:Name="tbk_Donation" Text="Donation:" Margin="-10 0 0 0" HorizontalAlignment="Right"/>
                     </Grid>
                     <Grid Margin="-300,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <UniformGrid Columns="2">
@@ -85,7 +85,7 @@
                     </Grid>
                 </UniformGrid>
             </Grid>
-            
+
         </Grid>
     </Grid>
 </Window>

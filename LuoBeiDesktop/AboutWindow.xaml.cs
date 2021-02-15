@@ -22,6 +22,14 @@ namespace LuoBeiDesktop
         public AboutWindow()
         {
             InitializeComponent();
+            this.Title = extend.Language.About;
+            tbk_Author.Text = extend.Language.Author;
+            tbk_Blog.Text = extend.Language.Blog;
+            tbk_Donation.Text = extend.Language.Donation;
+            tbk_SdkList.Text = extend.Language.SdkList;
+            tbk_Version.Text = extend.Language.Versions;
+            tbk_Website.Text = extend.Language.Website;
+            tbk_Versions.Text = extend.SystemConfig.Versions;
         }
     }
 }

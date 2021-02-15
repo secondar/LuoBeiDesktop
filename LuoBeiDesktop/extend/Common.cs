@@ -27,5 +27,19 @@ namespace LuoBeiDesktop.extend
             con.ConnectionString = @"Data Source=Config\DataBase.db;Pooling=true;FailIfMissing=false";
             return con;
         }
+        public void Mkdir(string Path)
+        {
+            string[] PathArray = Path.Split('/');
+            string thisPaht = "";
+            foreach (string i in PathArray)
+            {
+                thisPaht += i + "/";
+                if (!Directory.Exists(thisPaht))
+                {
+                    System.IO.Directory.CreateDirectory(thisPaht);
+                }
+            }
+        }
+
     }
 }
