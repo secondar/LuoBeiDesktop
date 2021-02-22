@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
@@ -112,6 +113,24 @@ namespace LuoBeiDesktop
 
                 };
                 messageBoxWindow.ShowDialog();
+
+                try
+                {
+                    string exepath = AppDomain.CurrentDomain.BaseDirectory + "LuoBeiDesktop.exe"; ;
+                    RegistryKey RKey = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run");//添加到所有用户的注册表启动项
+                    if (Run.Type == 1)
+                    {
+                        RKey.SetValue("LuoBeiDesktop", exepath);
+                        RKey.Close();
+                    }
+                    else
+                    {
+                        RKey.DeleteValue(exepath);//删除注册表
+                        RKey.Close();
+                    }
+
+                }
+                catch(Exception ex) { }
             }
             catch (Exception ex)
             {

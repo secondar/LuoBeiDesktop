@@ -334,7 +334,7 @@ namespace LuoBeiDesktop.extend
         private static string _CloseWallpaper = "CloseWallpaper";
         private static string _OpenWallpaper = "OpenWallpaper";
         private static string _Exit = "Exit";
-        private static string _NumberedMode = "Not supported at present, only local video and network video are supported at present";
+        private static string _NumberedMode = "Not supported at present, only support local video and network video, network pictures, local pictures and web pages!";
         private static string _InitWallpaperFail = "Wallpaper initialization failed";
         private static string _InitWallpaperSuccess = "Initialize wallpaper successfully";
         private static string _InitPlayerFail = "Player initialization failed";
@@ -394,7 +394,8 @@ namespace LuoBeiDesktop.extend
         private static string _Fail = "Fail";
         private static string _NotFinished = "Not finished, please wait patiently";
         private static string _DownloadFail = "Download failed";
-        
+        private static string _NoFile = "file does not exist";
+        private static string _NoNerWork = "No network";
         public static string Home
         {
             get { return _Home; }
@@ -777,5 +778,16 @@ namespace LuoBeiDesktop.extend
             get { return _DownloadFail; }
             set { _DownloadFail = value; }
         }
+        public static string NoFile
+        {
+            get { return _NoFile; }
+            set { _NoFile = value; }
+        }
+        public static string NoNerWork
+        {
+            get { return _NoNerWork; }
+            set { _NoNerWork = value; }
+        }
+        
     }
 }

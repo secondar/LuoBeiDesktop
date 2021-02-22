@@ -166,8 +166,10 @@ namespace LuoBeiDesktop
                 if (sr["field"].ToString() == "fail" && sr["field"].ToString() != "") extend.Language.Fail = sr["text"].ToString();
                 if (sr["field"].ToString() == "notfinished" && sr["field"].ToString() != "") extend.Language.NotFinished = sr["text"].ToString();
                 if (sr["field"].ToString() == "downloadfail" && sr["field"].ToString() != "") extend.Language.DownloadFail = sr["text"].ToString();
-                
+                if (sr["field"].ToString() == "nonerwork" && sr["field"].ToString() != "") extend.Language.NoNerWork = sr["text"].ToString();
+                if (sr["field"].ToString() == "nofile" && sr["field"].ToString() != "") extend.Language.NoFile = sr["text"].ToString();
 
+                
 
     }
             
@@ -207,7 +209,7 @@ namespace LuoBeiDesktop
 
             try
             {
-                string result = new extend.Network().Request("http://www.luobei.com/desktop/v1.common/statistics", "POST", "systemcode=" + new extend.GetSystemInfo().getRNum());
+                string result = new extend.Network().Request("http://desktop.bugquit.com/desktop/v1.common/statistics", "POST", "systemcode=" + new extend.GetSystemInfo().getRNum());
             }
             catch (Exception e) { }
             if (extend.SystemConfig.Update == 1)
@@ -215,7 +217,7 @@ namespace LuoBeiDesktop
 
                 try
                 {
-                    string result = new extend.Network().Request("http://www.luobei.com/desktop/v1.common/CheckUpdates", "POST", "systemcode=" + new extend.GetSystemInfo().getRNum());
+                    string result = new extend.Network().Request("http://desktop.bugquit.com/desktop/v1.common/CheckUpdates", "POST", "systemcode=" + new extend.GetSystemInfo().getRNum());
                     try
                     {
                         JObject Data = (JObject)JsonConvert.DeserializeObject(result);
@@ -258,7 +260,7 @@ namespace LuoBeiDesktop
                     //先检查下载器是否有更新
                     try
                     {
-                        string result = new extend.Network().Request("http://www.luobei.com/desktop/v1.common/getupdateapp", "POST", "systemcode=" + new extend.GetSystemInfo().getRNum());
+                        string result = new extend.Network().Request("http://desktop.bugquit.com/desktop/v1.common/getupdateapp", "POST", "systemcode=" + new extend.GetSystemInfo().getRNum());
                         JObject Data = (JObject)JsonConvert.DeserializeObject(result);
                         JObject DataInfo = (JObject)JsonConvert.DeserializeObject(Data["data"].ToString());
                         Version ThisVersion = new Version(extend.SystemConfig.Versions);
@@ -541,7 +543,80 @@ namespace LuoBeiDesktop
         /// </summary>
         public void SetMediaBackground(bool networks,int type,string path)
         {
-            if (type > 2)
+            //if (type > 2)
+            //{
+            //    MessageBoxWindow messageBoxWindow = new MessageBoxWindow();
+            //    messageBoxWindow.setInfo(extend.Language.Error, extend.Language.NumberedMode, "", extend.Language.Ok, 130, 350, false);
+            //    messageBoxWindow.getTextHandler += (int types) =>
+            //    {
+
+            //    };
+            //    messageBoxWindow.ShowDialog();
+            //    return;
+            //}
+            extend.ResultState result = null;
+            result = InitMediaBackground();
+
+
+            if (!result.Ok) {
+                MessageBoxWindow messageBoxWindow = new MessageBoxWindow();
+                messageBoxWindow.setInfo(extend.Language.Error, result.Msg, "", extend.Language.Ok, 130, 350, false);
+                messageBoxWindow.getTextHandler += (int types) =>
+                {
+
+                };
+                messageBoxWindow.ShowDialog();
+                return;
+            }
+            if (type <= 2)
+            {
+                result = MediaBackgroundPlay(networks, path);
+                if (!result.Ok)
+                {
+                    MessageBoxWindow messageBoxWindow = new MessageBoxWindow();
+                    messageBoxWindow.setInfo(extend.Language.Error, result.Msg, "", extend.Language.Ok, 130, 350, false);
+                    messageBoxWindow.getTextHandler += (int types) =>
+                    {
+
+                    };
+                    messageBoxWindow.ShowDialog();
+                    return;
+                }
+                else
+                {
+                    SetMediaBackgroundPlayVolume(extend.SystemConfig.Volume);
+                }
+            }
+            else if(type>2 && type<=4)
+            {
+                result = ImageBackground( path);
+                if (!result.Ok)
+                {
+                    MessageBoxWindow messageBoxWindow = new MessageBoxWindow();
+                    messageBoxWindow.setInfo(extend.Language.Error, result.Msg, "", extend.Language.Ok, 130, 350, false);
+                    messageBoxWindow.getTextHandler += (int types) =>
+                    {
+
+                    };
+                    messageBoxWindow.ShowDialog();
+                    return;
+                }
+            }else if (type == 5)
+            {
+                result = WebPageBackground(path);
+                if (!result.Ok)
+                {
+                    MessageBoxWindow messageBoxWindow = new MessageBoxWindow();
+                    messageBoxWindow.setInfo(extend.Language.Error, result.Msg, "", extend.Language.Ok, 130, 350, false);
+                    messageBoxWindow.getTextHandler += (int types) =>
+                    {
+
+                    };
+                    messageBoxWindow.ShowDialog();
+                    return;
+                }
+            }
+            else
             {
                 MessageBoxWindow messageBoxWindow = new MessageBoxWindow();
                 messageBoxWindow.setInfo(extend.Language.Error, extend.Language.NumberedMode, "", extend.Language.Ok, 130, 350, false);
@@ -552,33 +627,28 @@ namespace LuoBeiDesktop
                 messageBoxWindow.ShowDialog();
                 return;
             }
-            extend.ResultState result = null;
-            result = InitMediaBackground();
-            if (!result.Ok) {
-                MessageBoxWindow messageBoxWindow = new MessageBoxWindow();
-                messageBoxWindow.setInfo(extend.Language.Error, result.Msg, "", extend.Language.Ok, 130, 350, false);
-                messageBoxWindow.getTextHandler += (int types) =>
-                {
+        }
+        /// <summary>
+        /// 设置图片背景
+        /// </summary>
+        /// <param name="Path"></param>
+        /// <returns></returns>
+        public extend.ResultState ImageBackground(string Path)
+        {
+            extend.ResultState result = mediaBackground.SetImage(Path);
+            return new extend.ResultState(result.Ok, result.Msg, result.Code);
+        }
 
-                };
-                messageBoxWindow.ShowDialog();
-                return;
-            }
-            if (type <=2) result = MediaBackgroundPlay(networks, path);
-            if (!result.Ok) {
-                MessageBoxWindow messageBoxWindow = new MessageBoxWindow();
-                messageBoxWindow.setInfo(extend.Language.Error, result.Msg, "", extend.Language.Ok, 130, 350, false);
-                messageBoxWindow.getTextHandler += (int types) =>
-                {
+        /// <summary>
+        /// 设置网页
+        /// </summary>
+        /// <param name="Path"></param>
+        /// <returns></returns>
+        public extend.ResultState WebPageBackground(string Path)
+        {
+            extend.ResultState result = mediaBackground.SetWebPage(Path);
+            return new extend.ResultState(result.Ok, result.Msg, result.Code);
 
-                };
-                messageBoxWindow.ShowDialog();
-                return;
-            }
-            else
-            {
-                SetMediaBackgroundPlayVolume(extend.SystemConfig.Volume);
-            }
         }
         /// <summary>
         /// 初始化视频背景窗体

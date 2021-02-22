@@ -26,8 +26,21 @@ namespace LuoBeiDesktop
             this.Top = 0;
             this.Width = (int)System.Windows.SystemParameters.PrimaryScreenWidth;
             this.Height = (int)System.Windows.SystemParameters.PrimaryScreenHeight;
+            vlcControl.Left = 0;
+            vlcControl.Top = 0;
+            webBrowser.Left = 0;
+            webBrowser.Top = 0;
+            pictureBox.Left = 0;
+            pictureBox.Top = 0;
             vlcControl.Height = this.Height;
             vlcControl.Width = this.Width;
+            webBrowser.Height = this.Height;
+            webBrowser.Width = this.Width;
+            pictureBox.Height = this.Height;
+            pictureBox.Width = this.Width;
+            vlcControl.Visible = false;
+            webBrowser.Visible = false;
+            pictureBox.Visible = false;
         }
         private void vlcControl_VlcLibDirectoryNeeded(object sender, Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs e)
         {
@@ -51,17 +64,23 @@ namespace LuoBeiDesktop
         /// 
         public extend.ResultState SetMediaLocal(string Pahtn)
         {
-            if (!File.Exists(Pahtn)) new extend.ResultState(false, "文件不存在", 1);
+            if (webBrowser.Visible)
+            {
+                webBrowser.Visible = false;
+            }
+            if(pictureBox.Visible) pictureBox.Visible = false;
+            if(!vlcControl.Visible) vlcControl.Visible = true;
+            if (!File.Exists(Pahtn)) new extend.ResultState(false, extend.Language.NoFile, 1);
             try
             {
                 mediaPath = Pahtn;
                 isNetWork = false;
                 vlcControl.SetMedia(new System.IO.FileInfo(Pahtn));
-                return new extend.ResultState(true, "成功", 1);
+                return new extend.ResultState(true, extend.Language.Ok, 0);
             }
             catch (Exception e)
             {
-                return new extend.ResultState(false, "设置本地播放源失败,错误信息:" + e.Message, 1);
+                return new extend.ResultState(false, extend.Language.Fail, 1);
             }
         }
         /// <summary>
@@ -71,22 +90,83 @@ namespace LuoBeiDesktop
         /// <returns></returns>
         public extend.ResultState SetMediaNetwork(string url)
         {
+            if (webBrowser.Visible)
+            {
+                webBrowser.Visible = false;
+            }
+            if (pictureBox.Visible) pictureBox.Visible = false;
+            if (!vlcControl.Visible) vlcControl.Visible = true;
+
             extend.Network network = new extend.Network();
             if (!network.PingIpOrDomainName("www.baidu.com")) return new extend.ResultState(false, "没有网络连接", 1);
-            //if (!network.UrlIsExist(url)) return new extend.ResultState(false, "无法访问网络媒体路径", 1);
             try
             {
                 mediaPath = url;
                 isNetWork = true;
                 vlcControl.SetMedia(new Uri(url));
-                return new extend.ResultState(true, "成功", 1);
+                return new extend.ResultState(true, extend.Language.Ok, 0);
+
             }
             catch (Exception e)
             {
-                return new extend.ResultState(false, "设置网络播放源失败,错误信息:" + e.Message, 1);
+                return new extend.ResultState(false, extend.Language.Fail, 1);
+
             }
         }
+        /// <summary>
+        /// 设置图片背景
+        /// </summary>
+        /// <param name="Path"></param>
+        /// <returns></returns>
+        public extend.ResultState SetImage(string Path)
+        {
+            if (webBrowser.Visible)
+            {
+                webBrowser.Visible = false;
+            }
+            if (!pictureBox.Visible) pictureBox.Visible = true;
+            if (vlcControl.Visible) vlcControl.Visible = false;
+            SetVoice(0);
+            try
+            {
+                pictureBox.ImageLocation = Path;
+                return new extend.ResultState(true, extend.Language.Ok, 0);
 
+            }
+            catch (Exception e)
+            {
+                return new extend.ResultState(false, extend.Language.Fail, 1);
+
+            }
+
+        }
+
+        /// <summary>
+        /// 设置图片背景
+        /// </summary>
+        /// <param name="Path"></param>
+        /// <returns></returns>
+        public extend.ResultState SetWebPage(string Url)
+        {
+            if (!webBrowser.Visible) webBrowser.Visible = true;
+
+            if (!pictureBox.Visible) pictureBox.Visible = false;
+            if (vlcControl.Visible) vlcControl.Visible = false;
+            SetVoice(0);
+            try
+            {
+                webBrowser.Url = new Uri(Url);
+                return new extend.ResultState(true, extend.Language.Ok, 0);
+
+            }
+            catch (Exception e)
+            {
+                return new extend.ResultState(false, extend.Language.Fail, 1);
+
+            }
+
+
+        }
         /// <summary>
         /// 播放视频
         /// </summary>
@@ -131,7 +211,7 @@ namespace LuoBeiDesktop
         public extend.ResultState SetVoice(int voice)
         {
             vlcControl.Audio.Volume = voice;
-            return new extend.ResultState(true, "成功", 0);
+            return new extend.ResultState(true, extend.Language.Ok, 0);
         }
     }
 }
