@@ -1,22 +1,22 @@
 # LuoBeiDesktop
 
-######C # dynamic desktop wallpaper
+#### ## C # dynamic desktop wallpaper
 
-####Introduction
+#### Introduction
 
 Support video, picture, website
 
-####Expansion
+#### Expansion
 
 1. Vlc
 
 2. user32.dll
 
-####Instructions for use
+#### Instructions for use
 
 1. Based on. Net 4.5
 
-####Others
+#### Others
 
 1. Technology dishes, originally intended to use WPF to do all, but can not do the WPF embedded desktop can still be used normally, so form to do the background, and then the interface is really ugly
 
@@ -30,7 +30,7 @@ Support video, picture, website
 
 6. About the installation, you need to download and compile by yourself. You use vs2019 for personal use
 
-####Participation and contribution
+#### Participation and contribution
 
 1. Fork warehouse
 
@@ -40,7 +40,7 @@ Support video, picture, website
 
 4. New pull request
 
-####About
+#### About
 
 1. Blog[ www.bugquit.com ]( https://www.bugquit.com )
 
